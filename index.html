@@ -16,7 +16,7 @@
 	</head>
 
 	<!--Main HTML-->
-	<body>
+	<body class="bluepage">
 		<header>
 			<h1 class="app-title" id="app-name">Breathe</h1>
 		</header>
@@ -30,14 +30,15 @@
 					__ minutes<br>
 				</section>
 			</div>
-		</main>
+		</main><br><hr>
+
 		<footer>
-			<nav class="navbar" id="nav">
-				<ul>
-					<li><a class="navbar" id="homebutton" href="/index.html">Home</a></li>
-					<li><a class="navbar" id="profilebutton" href="/profile.html">Profile</a></li>
-					<li><a class="navbar" id="chatbutton" href="/chats.html">Chat</a></li>
-					<li><a class="navbar" id="healthbutton" href="/health.html">Check-In</a></li>
+			<nav class="navbar">
+				<ul class="navbar" id="nav">
+					<li><button class="navbar" id="homebutton" onclick="window.location.href='index.html'">Home</button></li>
+					<li><button class="navbar" id="profilebutton" onclick="window.location.href='profile.html'">Profile</button></li>
+					<li><button class="navbar" id="chatbutton" onclick="window.location.href='chats.html'">Chat</button></li>
+					<li><button class="navbar" id="healthbutton" onclick="window.location.href='health.html'">Check-In</button></li>
 				</ul>
 			</nav>
 		</footer>

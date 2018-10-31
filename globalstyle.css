@@ -1,0 +1,29 @@
+body.bluepage {
+    background-color: #C9E9F6;
+}
+
+header, footer {
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
+
+ul#nav {
+    overflow: hidden;
+    list-style-type: none;
+    display: inline;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar button {
+    background-color: #45B3E0;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 20px
+}
