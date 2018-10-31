@@ -1,21 +1,48 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Health</title>
-</head>
-<body>
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">Breathe</a>
-	    </div>
-	    <ul class="nav navbar-nav">
-	      <li><a href="./home.html">Home</a></li>
-	      <li><a href="./chats.html">Chats</a></li>
-	      <li><a href="./profile.html">Profile</a></li>
-	      <li class="active"><a href="./health.html">Health</a></li>
-	    </ul>
-	  </div>
-	</nav>
-</body>
+<html lang="en-US">
+
+	<!--Meta Data-->
+  <head>
+		<title>Breathe</title>
+		<link rel="icon" type="img/png" href="assets/img/breathe_favicon.png">
+		<link rel="stylesheet" type="text/css" href="globalstyle.css">
+		<base href="/Breathe">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Breathe Chats">
+		<meta name="keywords" content="HTML">
+		<meta name="author" content="Arman Kazi">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<!--Main HTML-->
+	<body>
+		<header>
+			<h2 id="checkin-q">Did you smoke today?</h2>
+		</header>
+
+		<main>
+			<div class="page-content" id="checkin-buttons">
+				<section class="responses" id="checkin-answers">
+					<button>Yes</button><br>
+					<button>No</button><br>
+				</section><br>
+				<section class="xtranav" id="checkin-links">			
+					<button onclick="window.location.href='health-tips.html'">Health Tips</button>
+					<button onclick="window.location.href='health-tips.html'">Progress</button>
+				</section>
+			</div>
+		</main>
+
+		<footer>
+			<nav class="navbar" id="nav">
+				<ul>
+					<li><a class="navbar" id="homebutton" href="/index.html">Home</a></li>
+					<li><a class="navbar" id="profilebutton" href="/profile.html">Profile</a></li>
+					<li><a class="navbar" id="chatbutton" href="/chats.html">Chat</a></li>
+					<li><a class="navbar" id="healthbutton" href="/health.html">Check-In</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</body>
 </html>
