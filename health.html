@@ -6,6 +6,7 @@
 		<title>Breathe</title>
 		<link rel="icon" type="img/png" href="assets/img/breathe_favicon.png">
 		<link rel="stylesheet" type="text/css" href="globalstyle.css">
+		<script src="responses.js"></script>
 		<base href="index.html">
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +23,12 @@
 		</header>
 
 		<main>
+			<script>
+				var checkin_q = document.getElementById("checkin-q");
+			</script>
 			<div class="page-content" id="checkin-buttons">
 				<section class="responses" id="checkin-answers">
-					<button>Yes</button><br>
+					<button onclick="changeText()">Yes</button><br>
 					<button>No</button><br>
 				</section><br>
 				<section class="xtranav" id="checkin-links">			
