@@ -53,4 +53,19 @@ ul#nav {
     height: 100px;
     width: 100px;
 } 
+ 
+#checkin-submit {
+    background-color: #45B3E0;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 15px;
+    border-radius: 40%;
+    border: 10px solid rgb(186, 247, 186);
+    height: 200px;
+    width: 200px;
+}
+
+#checkin-entry {
+    background-color: white;
 }

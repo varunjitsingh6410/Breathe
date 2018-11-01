@@ -23,9 +23,6 @@
 		</header>
 
 		<main>
-			<script>
-				var checkin_q = document.getElementById("checkin-q");
-			</script>
 			<div class="page-content" id="checkin-buttons">
 				<section class="responses" id="checkin-answers">
 					<button id="checkin-yes" onclick="changeText()">Yes</button><br>
@@ -36,6 +33,12 @@
 					<button onclick="window.location.href='health-tips.html'">Progress</button>
 				</section>
 			</div>
+						<!--Global Variables for Response JS-->
+			<script>
+				var checkin_q = document.getElementById("checkin-q");
+				var checkin_yes = document.getElementById("checkin-yes");
+				var checkin_no = document.getElementById("checkin-no");
+			</script>
 		</main><br><hr>
 
 		<footer>
