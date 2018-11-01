@@ -25,5 +25,32 @@ ul#nav {
     color: #ffffff;
     text-align: center;
     padding: 10px 10px;
-    font-size: 20px
+    font-size: 20px;
+    border-radius: 45%;
+    height: 50px;
+    width: 150px
+}
+
+.responses button {
+    background-color: #45B3E0;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 15px;
+    border-radius: 40%;
+    border: 20px solid rgb(186, 247, 186);
+    height: 100px;
+    width: 100px;
+}
+
+.xtranav button {
+    background-color: #45B3E0;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 15px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+} 
 }

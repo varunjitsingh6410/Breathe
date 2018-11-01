@@ -1,5 +1,4 @@
 var count = 0;
-var checkin_q = document.getElementById("checkin-q");
 var checkin_q2 = 'How much did you smoke today?';
 var checkin_q3 = 'When was the last time you smoked?';
 var checkin_qs = [checkin_q2, checkin_q3];
