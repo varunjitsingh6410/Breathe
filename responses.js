@@ -44,6 +44,7 @@ function replaceYN(num) {
             checkin_entry = renderHTML("input", "checkin-entry", "type", "number", "", parent);
             checkin_entry.setAttribute("min", "1");
             parent.appendChild(document.createElement("br"));
+            parent.appendChild(document.createElement("br"));
             checkin_submit = renderHTML("button", "checkin-submit", "onclick", "changeText()", "Submit", parent);
             checkin_submit.setAttribute('class', 'checkin-submit');
             break;
@@ -53,7 +54,15 @@ function replaceYN(num) {
             parent.removeChild(checkin_submit);
             parent.removeChild(checkin_entry);
             checkin_entry = renderHTML("input", "checkin-entry2", "type", "number", "", parent);
+            checkin_entry.setAttribute('placeholder', 'Hours');
+            checkin_entry.setAttribute("min", "0");
+            parent.appendChild(document.createElement("br"));
+            checkin_entry = renderHTML("input", "checkin-entry2", "type", "number", "", parent);
+            checkin_entry.setAttribute('placeholder', 'Minutes')
             checkin_entry.setAttribute("min", "1");
+            checkin_entry.innerHTML = "Hours";
+            checkin_entry.setAttribute("min", "1");
+            parent.appendChild(document.createElement("br"));
             parent.appendChild(document.createElement("br"));
             checkin_submit = renderHTML("button", "checkin-submit2", "onclick", "changeText()", "Submit", parent);
             checkin_submit.setAttribute('class', 'checkin-submit');
