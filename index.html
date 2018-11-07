@@ -18,19 +18,28 @@
 
 	<!--Main HTML-->
 	<body class="bluepage">
+		<script>
+			isLoggedIn();
+		</script>
 		<header>
 			<h1 class="app-title" id="app-name">Breathe</h1>
 		</header>
 		<main>
 			<div class="page-content" id="welcome">
-				<h3>Congratulations! You haven't smoked in:</h3>
-				<section>
+				<h3 id="congrats">Congratulations! You haven't smoked in:</h3>
+				<section id="time-tracking">
 					__ days<br>
 					__ hours<br>
 					&<br>
 					__ minutes<br>
 				</section>
+				<script type="text/javascript">
+					var congrats = document.getElementById('congrats')
+					congrats = sessionStorage.getItem('username');
+					document.getElementById('congrats').innerHTML = "Hi " + congrats + ", you haven't smoked for...";
+				</script>
 			</div>
+
 		</main><br><hr>
 
 		<footer>
