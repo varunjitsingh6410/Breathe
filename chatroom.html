@@ -27,28 +27,48 @@
 
 
 			<div class="container">
-			  <img src="/w3images/bandmember.jpg" alt="Avatar">
+			  <img src="spt.png" alt="Avatar">
 			  <p>Hello. How are you today?</p>
 			  <span class="time-right">11:00</span>
 			</div>
 
 			<div class="container darker">
-			  <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">
+			  <img src="profile.png" alt="Avatar" class="right">
 			  <p>Hey! I'm fine. Thanks for asking!</p>
 			  <span class="time-left">11:01</span>
 			</div>
 
 			<div class="container">
-			  <img src="/w3images/bandmember.jpg" alt="Avatar">
+			  <img src="spt.png" alt="Avatar">
 			  <p>Sweet! So, what do you wanna do today?</p>
 			  <span class="time-right">11:02</span>
 			</div>
 
-			<div class="container darker">
-			  <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">
+			<div class="container darker" id="userMessage">
+			  <img src="profile.png" alt="Avatar" class="right">
 			  <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
 			  <span class="time-left">11:05</span>
 			</div>
+
+			<div class="messageInput">
+				<form>
+		            <input type="text" id="input_id" value="">
+		            <input type="submit" value="Submit">
+		            <div id="alert" style="color: red"></div>
+		        </form>
+	        </div>
+
+	        <script type="text/javascript">
+	        	function addElement()
+				{
+					var paragraph = document.createElement("p");
+					var text = document.createTextNode("hello world");
+					paragraph.appendChild(text);
+
+					var element = document.getElementById("userMessage");
+					element.appendChild(paragraph);
+				}
+	        </script>
 
 			<hr>
 
