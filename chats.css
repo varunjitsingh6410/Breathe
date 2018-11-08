@@ -1,0 +1,24 @@
+.chats {
+	padding-left: 240px;
+}
+
+.nursebtn {
+	background-image: url(nurse.png);
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.therapistbtn {
+	background-image: url(therapist.png);
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.spgbtn {
+	background-image: url(spt.png);
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
