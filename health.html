@@ -28,20 +28,18 @@
 		<main>
 			<div class="page-content" id="checkin-buttons">
 				<section class="responses" id="checkin-answers">
-					<button id="checkin-yes" onclick="changeText()">Yes</button><br>
-					<button id="checkin-no">No</button><br>
+					<form id="checkin-responses" class="responses">
+						<button id="button-one" onclick="return checkinChange()">Yes</button><br>
+						<button id="button-two">No</button><br>
+					</form>
 				</section><br>
 				<section class="xtranav" id="checkin-links">
 					<button id="tips" onclick="window.location.href='health-tips.html'">Health Tips</button>
 					<button id="progress" onclick="window.location.href='health-tips.html'">Progress</button>
 				</section>
 			</div>
-						<!--Global Variables for Response JS-->
 			<script>
-				var checkin_q = document.getElementById("checkin-q");
-				var checkin_yes = document.getElementById("checkin-yes");
-				var checkin_no = document.getElementById("checkin-no");
-				var resp = document.getElementById("checkin-entry");
+				var form = document.getElementById('checkin-responses');
 			</script>
 		</main><br><hr>
 

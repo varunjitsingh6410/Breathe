@@ -10,16 +10,66 @@ sessionStorage.setItem("isLoggedIn", false);
 
 
 
-function localStore() {
+function loginStore() {
     var username = document.getElementById("username");
     sessionStorage.setItem('username', username.value);
     var password = document.getElementById('password');
     sessionStorage.setItem("password", password.value);
-    sessionStorage.setItem("isLoggedIn", true);
 }
 
+function checkinChange(caseNum) {
+    //
+    var checkin_form = document.getElementById('checkin-responses');
+    var button1 = document.getElementById('button-one');
+    var button2 = document.getElementById('button-two');
+    var default_b1_flag = false;
 
+    switch (caseNum) {
+        case 1:
+            //create necessary for second change
+            console.log(caseNum);
+            var removed = document.getElementById('xSmoked');
+            removed.parentNode.removeChild(removed);
+            var hours = document.createElement('input');
+            var minutes = document.createElement('input');
+            var br = document.createElement('br');
+            
+            //question change
+            var checkin_q = document.getElementById('checkin-q');
+            checkin_q.innerHTML = "Roughly how long ago did you smoke?"; 
+            break;
+        case 2: 
+        default:
+            //create variables necessary for first change
+            var ans =  document.createElement('input');
+            var br = document.createElement('br');
+            var br2 = document.createElement('br');
 
+            //question change
+            var checkin_q = document.getElementById('checkin-q');
+            checkin_q.innerHTML = "How many times did you smoke?";
+            
+            //set input elem attributes and insert into checkin form
+            ans.setAttribute('type', 'text');
+            ans.setAttribute('id', 'xSmoked');
+            checkin_form.insertBefore(br, button1);
+            checkin_form.insertBefore(br2, br);
+            checkin_form.insertBefore(ans, br2);
+
+            //change the buttons
+            button1.innerHTML = "Enter";
+            button1.setAttribute('onclick',"checkinChange(1);");
+            button2.innerHTML = "Back";
+            break;
+    }
+    return false;
+
+}
+
+/**
+ * Checks whether the user is logged in by verifying username isn't null. Redirects
+ * user from any page on site to login if username is null (sessionStorage)
+ **/
 function isLoggedIn() {
     if (sessionStorage.getItem('username') != null) {
         return;
@@ -29,7 +79,9 @@ function isLoggedIn() {
     }
 }
 
-
+/**
+ * Starts count up on home screen after a user has checked in on the health page
+ **/
 function startTimer() {
     var yr = new Date().getFullYear();
     var day = new Date().getDay();
