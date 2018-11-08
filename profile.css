@@ -1,0 +1,27 @@
+img {
+    border-radius: 50%;
+    max-height: 150px;
+	max-width: 200px;
+	width: 120px;
+	height: 120px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.name {
+	text-align: center;
+	text-decoration: underline;
+}
+
+.goal {
+	text-align: center;
+}
+
+.bio {
+	text-align: center;
+}
+
+.interests {
+	text-align: center;
+}
