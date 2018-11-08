@@ -6,6 +6,8 @@
 		<title>Breathe</title>
 		<link rel="icon" type="img/png" href="assets/img/breathe_favicon.png">
 		<link rel="stylesheet" type="text/css" href="globalstyle.css">
+		<link rel="stylesheet" type="text/css" href="progress.css">
+		<script src="progress.js"></script>
 		<script src="responses.js"></script>
 		<base href="index.html">
 		<meta charset="UTF-8">
@@ -24,6 +26,20 @@
 			<main>
 
 			</main><br><hr>
+
+			<div class="progressChart">
+				<h1>Progress</h1>
+				<canvas id="graph"></canvas>
+				<script type="text/javascript">
+					var canvas = document.getElementById("graph");
+					var ctx = canvas.getContext("2d");
+					ctx.moveTo(0,0);
+					ctx.lineTo(400,200);
+					ctx.stroke();
+				</script>
+			</div>
+			<br>
+			<br>
 
 			<footer>
 				<nav class="navbar">
