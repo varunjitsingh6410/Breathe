@@ -4,6 +4,42 @@ var checkin_q3 = 'When was the last time you smoked?';
 var checkin_qs = [checkin_q2, checkin_q3];
 var checkin_entry, checkin_submit;
 var amt_today = 0;
+var checkin_responses = [];
+var responseCount = 0;
+sessionStorage.setItem("isLoggedIn", false);
+
+
+
+function localStore() {
+    var username = document.getElementById("username");
+    sessionStorage.setItem('username', username.value);
+    var password = document.getElementById('password');
+    sessionStorage.setItem("password", password.value);
+    sessionStorage.setItem("isLoggedIn", true);
+}
+
+
+
+function isLoggedIn() {
+    if (sessionStorage.getItem('username') != null) {
+        return;
+    }
+    else {
+        window.location.assign("login.html");
+    }
+}
+
+
+function startTimer() {
+    var yr = new Date().getFullYear();
+    var day = new Date().getDay();
+}
+
+
+
+
+
+
 
 function renderHTML(tag, id, attribute, attVal, inner, parent) {
     var btn = document.createElement(tag);
@@ -13,6 +49,15 @@ function renderHTML(tag, id, attribute, attVal, inner, parent) {
     btn.appendChild(text);
     parent.appendChild(btn);
     return btn;
+}
+
+function storeVar() {
+    responseCount++;
+    checkin_responses.push();
+}
+
+function displayTime(time) {
+
 }
 
 function changeText(){
@@ -42,10 +87,11 @@ function replaceYN(num) {
             parent.removeChild(checkin_no);
             parent.removeChild(checkin_yes);
             checkin_entry = renderHTML("input", "checkin-entry", "type", "number", "", parent);
+            checkin_responses.push(document.getElementById('checkin-entry'));
             checkin_entry.setAttribute("min", "1");
             parent.appendChild(document.createElement("br"));
             parent.appendChild(document.createElement("br"));
-            checkin_submit = renderHTML("button", "checkin-submit", "onclick", "changeText()", "Submit", parent);
+            checkin_submit = renderHTML("button", "checkin-submit", "onclick", "changeText(); storeVar(document.getElementById('checkin-entry'));", "Submit", parent);
             checkin_submit.setAttribute('class', 'checkin-submit');
             break;
 
