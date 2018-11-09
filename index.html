@@ -36,6 +36,9 @@
 				<script type="text/javascript">
 					var congrats = sessionStorage.getItem('username');
 					document.getElementById('congrats').innerHTML = "Hi " + congrats + ", you haven't smoked for...";
+					var time = setInterval(function() {
+						startTimer();
+					}, 1000);
 				</script>
 			</div>
 
