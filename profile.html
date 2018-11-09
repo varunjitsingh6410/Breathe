@@ -26,10 +26,15 @@
 
 				<div class="profile">
 					<img src="img_avatar.png" alt="Avatar">
-					<h1 class="name">Mr. Potato Head</h1>
+					<h1 class="name" id="userName">Mr. Potato Head</h1>
 					<h2 class="goal">Goal: Quit smoking</h2>
-					<h2 class="bio">Biography: I like potato</h2>
+					<h2 class="bio">Biography: I have been smoking for many years and am finally ready to quit to start striving for a healthier lifestyle.</h2>
 					<h2 class="interests">Interests: Piano, Pokemon, Anime</h2>
+
+					<script type="text/javascript">
+						var congrats = sessionStorage.getItem('username');
+						document.getElementById('userName').innerHTML = congrats;
+					</script>
 				</div>
 				
 			</main><br><hr>
