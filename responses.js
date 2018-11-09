@@ -1,4 +1,4 @@
-var count = 0;
+sessionStorage.setItem('count', 0);
 var checkin_q2 = 'How many times did you smoke today?';
 var checkin_q3 = 'When was the last time you smoked?';
 var checkin_qs = [checkin_q2, checkin_q3];
@@ -35,6 +35,7 @@ function checkinData() {
     sessionStorage.setItem('minutes', arrTemp.pop().value);
     sessionStorage.setItem('hours', arrTemp.pop().value);
     sessionStorage.setItem('xSmoked', arrTemp.pop().value);
+    sessionStorage.setItem('count', 1);
 }
 
 
@@ -46,28 +47,41 @@ function checkinChange(caseNum) {
     var checkin_form = document.getElementById('checkin-responses');
     var button1 = document.getElementById('button-one');
     var button2 = document.getElementById('button-two');
-
+    
     switch (caseNum) {
         //Happens after user clicks "Yes" to answer "Did you smoke today?" (first question)
         case 1:
-            //remove old input
+            //remove old content
             if (document.getElementById('xSmoked')) {
                 var removed = document.getElementById('xSmoked');
                 removed.parentNode.removeChild(removed);
+                removed = document.getElementById('button-one');
+                removed.parentNode.removeChild(removed);
+                removed = document.getElementById('button-two');
+                var parent = removed.parentNode;
+                removed.parentNode.removeChild(removed);
+                var rm1 = document.getElementById('rm1');
+                var rm2 = document.getElementById('rm2');
+                rm1.parentNode.removeChild(rm1);
+                rm2.parentNode.removeChild(rm2);
             }
 
             //create necessary for second change
             var hours = document.createElement('input');
             var minutes = document.createElement('input');
+            button1 = document.createElement('button');
+            button2 = document.createElement('button');
             var br = document.createElement('br');
             var br2 = document.createElement('br');
             var br3 = document.createElement('br');
+            var br4 = document.createElement('br');
+            var br5 = document.createElement('br');
             
             //question change
             var checkin_q = document.getElementById('checkin-q');
             checkin_q.innerHTML = "Roughly how long ago did you smoke?";
 
-            //set input elem attributes and insert into checkin form
+            //input attributes
             hours.setAttribute('type', 'number');
             hours.setAttribute('id', 'hours');
             hours.setAttribute('min', '0');
@@ -82,23 +96,29 @@ function checkinChange(caseNum) {
             minutes.setAttribute('placeholder', 'Minutes');
             minutes.setAttribute('onkeydown', 'return false');
             minutes.setAttribute('style', "width: 30%; border-color: cyan");
+
+            //change the buttons
+            button1.innerHTML = "Submit";
+            button1.setAttribute('type', 'button');
+            button1.setAttribute('onclick', 'checkinChange(2)')
+            button2.innerHTML = "Start Over";
+            button2.setAttribute('onclick', "window.location.href='health.html'");
+            button2.setAttribute('type', 'button');
+
+            checkin_form.appendChild(button1);
+            checkin_form.appendChild(document.createElement('br'));
+            checkin_form.appendChild(button2);
             checkin_form.insertBefore(br, button1);
             checkin_form.insertBefore(br2, br);
             checkin_form.insertBefore(minutes, br2);
             checkin_form.insertBefore(br3, minutes);
-            checkin_form.insertBefore(hours, br3);
+            checkin_form.insertBefore(br4, br3);
+            checkin_form.insertBefore(hours, br4);
 
             //use temp array to globally store checkin data for session storage transfer
             arrTemp.push(document.getElementById('hours'));
             arrTemp.push(document.getElementById('minutes'));
             
-            //change the buttons
-            button1.innerHTML = "Submit";
-            button1.setAttribute('type', 'button');
-            button2.innerHTML = "Start Over";
-            button2.setAttribute('onclick', "window.location.href='health.html'");
-            button2.setAttribute('type', 'button');
-
             //checks every millisecond whether required input has been entered
             setInterval(function() { 
                 if (hours.value.length < 1 || minutes.value.length < 1) {
@@ -107,7 +127,7 @@ function checkinChange(caseNum) {
                 else {
                     button1.setAttribute('onclick', 'checkinChange(2); checkinData()');
                 }
-                if (arrTemp.length < 3) {
+                if (arrTemp.length != 3) {
                     button1.setAttribute('disabled', '');
                 }
                 else {
@@ -119,6 +139,14 @@ function checkinChange(caseNum) {
         //Happens after user clicks "Submit"(third question) 
         //OR after user selects "No" (first question)
         case 2:
+            sessionStorage.setItem('count', 1);
+            //remove old input
+            if (document.getElementById('xSmoked')) {
+                var removed = document.getElementById('hours');
+                removed.parentNode.removeChild(removed);
+                removed = document.getElementById('minutes');
+                removed.parentNode.removeChild(removed);
+            }
             //remove buttons and change display
             checkin_form.parentNode.removeChild(checkin_form);
             var checkin_q = document.getElementById('checkin-q');
@@ -166,9 +194,7 @@ function checkinChange(caseNum) {
                 else {
                     button1.setAttribute('onclick', 'checkinChange(1)');
                 }
-                if (ans.value.length > 1) {
-                    window.location.assign('health.html');
-                } 
+                
             }, 1);
             break;
     }
@@ -193,9 +219,37 @@ function isLoggedIn() {
  **/
 function startTimer() {
     var yr = new Date().getFullYear();
+    var month = new Date().getMonth();
     var day = new Date().getDay();
+    var hour = sessionStorage.getItem('hours');
+    var minute = sessionStorage.getItem('minutes');
+    var curr_hr = new Date().getUTCHours();
+    var curr_mins = new Date().getUTCMinutes();
+    var curr_secs = new Date().getSeconds();
+    var curr_ms = new Date().getMilliseconds();
+    var last_smoked = new Date(yr, month, day, hour, minute, 0, 0);
+    sessionStorage.setItem('last_smoked', last_smoked);
+    var now = new Date(yr, month, day, curr_hr, curr_mins, curr_secs, curr_ms);
+    var distance = now - last_smoked;
+    
+    var x = setInterval(function() {
+        distance = now - last_smoked;
+        var days = Math.floor(distance/(1000*60*60*24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        var timeElapsed = document.getElementById('time-tracking');
+        timeElapsed.innerHTML = days + " days, " + hours + " hrs, " + minutes + " mins, and " + seconds + " secs";
+    }, 1000);
+    
+    return x;
+
 }
 
+function display(time) {
+
+}
 
 
 
