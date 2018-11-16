@@ -25,49 +25,47 @@
 			</script>
 			<br>
 
+			<div id="chatty">
+				<div class="container">
+				  <img src="spt.png" alt="Avatar">
+				  <p>Hello, I am your support. How are you today?</p>
+				  <span class="time-right">11:00</span>
+				</div>
 
-			<div class="container">
-			  <img src="spt.png" alt="Avatar">
-			  <p>Hello. How are you today?</p>
-			  <span class="time-right">11:00</span>
-			</div>
+				<div class="container darker">
+				  <img src="profile.png" alt="Avatar" class="right">
+				  <p>Hey! I'm fine. Thanks for asking!</p>
+				  <span class="time-left">11:01</span>
+				</div>
 
-			<div class="container darker">
-			  <img src="profile.png" alt="Avatar" class="right">
-			  <p>Hey! I'm fine. Thanks for asking!</p>
-			  <span class="time-left">11:01</span>
-			</div>
+				<div class="container">
+				  <img src="spt.png" alt="Avatar">
+				  <p>Sweet! So, how's your recovery going?</p>
+				</div>
 
-			<div class="container">
-			  <img src="spt.png" alt="Avatar">
-			  <p>Sweet! So, what do you wanna do today?</p>
-			  <span class="time-right">11:02</span>
-			</div>
+				<div class="container darker" id="userMessage">
+				  <img src="profile.png" alt="Avatar" class="right">
+				  <p>I dunno....</p>
+				</div>
+	    	</div>
 
-			<div class="container darker" id="userMessage">
-			  <img src="profile.png" alt="Avatar" class="right">
-			  <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-			  <span class="time-left">11:05</span>
-			</div>
-
-			<div class="messageInput">
-				<form>
+	    	<div id="messageInput">
+				<form id="messageForm" autocomplete="off">
 		            <input type="text" id="input_id" value="">
-		            <input type="submit" value="Submit">
+		            <button type="button" onclick="addMessage()">Send</button>
 		            <div id="alert" style="color: red"></div>
 		        </form>
-	        </div>
+		    </div>
 
 	        <script type="text/javascript">
-	        	function addElement()
-				{
-					var paragraph = document.createElement("p");
-					var text = document.createTextNode("hello world");
-					paragraph.appendChild(text);
-
-					var element = document.getElementById("userMessage");
-					element.appendChild(paragraph);
-				}
+	        	function addMessage() {
+		        	var temp = document.getElementById('input_id');
+		        	var reply = document.createElement('p');
+		        	reply.innerHTML = temp.value;
+		        	var messages = document.getElementById('userMessage');
+		        	document.getElementById("messageForm").reset();
+		        	messages.appendChild(reply);
+		        }
 	        </script>
 
 			<hr>
@@ -79,6 +77,7 @@
 						<li><button class="navbar" id="profilebutton" onclick="window.location.href='profile.html'">Profile</button></li>
 						<li><button class="navbar" id="chatbutton" onclick="window.location.href='chats.html'">Chat</button></li>
 						<li><button class="navbar" id="healthbutton" onclick="window.location.href='health.html'">Check-In</button></li>
+						<li><button class="navbar" id="homebutton" onclick="sessionStorage.clear();location.reload()">Logout</button></li>
 					</ul>
 				</nav>
 			</footer>
