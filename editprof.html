@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+	<!--Meta Data-->
+  <head>
+		<title>Breathe</title>
+		<link rel="icon" type="img/png" href="assets/img/breathe_favicon.png">
+		<link rel="stylesheet" type="text/css" href="globalstyle.css">
+		<link rel="stylesheet" type="text/css" href="editprof.css">
+		<script src="responses.js"></script>
+		<base href="index.html">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Breathe Chats">
+		<meta name="keywords" content="HTML">
+		<meta name="author" content="Daniel Kong">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<!--Main HTML-->
+	<body class="bluepage">
+		<script>
+			isLoggedIn();
+		</script>
+  			Username: 
+  			<p>
+  				<input type="text" id="fname"><br>
+  			</p>
+  			Goals: 
+  			<p>
+  				<input type="text" id="goals"><br>
+  			</p>
+  			Biography: 
+  			<p>
+  				<input class="wideInput" type="text" id="biog"><br>
+  			</p>
+
+  			Interests: 
+  			<p>
+  				<input type="text" id= "interest"><br>
+  			</p>
+  			<button onclick="myFunction()">Update</button>
+			<script>
+				function myFunction() {
+    				var username = document.getElementById("fname");
+    				if (username.value.length != 0){
+    				sessionStorage.setItem('username', username.value);
+    				}
+    				var goals = document.getElementById("goals");
+    				if (goals.value.length != 0){
+    					sessionStorage.setItem('goals', goals.value);
+    				}
+    				var biography = document.getElementById('biog');
+    				if (biography.value.length != 0){
+    					sessionStorage.setItem("biography", biography.value);	
+    				}
+    				var interests = document.getElementById('interest');
+    				if (interests.value.length !=0){
+    					sessionStorage.setItem("interests", interests.value);
+    				}
+
+					}
+			</script>
+		<footer>
+			<button class="navbar" id="update" onclick="window.location.href='profile.html'">Back To Profile</button>
+		</footer>
+	</body>
+</html>
