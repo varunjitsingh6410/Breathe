@@ -50,7 +50,7 @@
 	    	</div>
 
 	    	<div id="messageInput">
-				<form id="messageForm">
+				<form id="messageForm" autocomplete="off">
 		            <input type="text" id="input_id" value="">
 		            <button type="button" onclick="addMessage()">Send</button>
 		            <div id="alert" style="color: red"></div>
@@ -63,6 +63,7 @@
 		        	var reply = document.createElement('p');
 		        	reply.innerHTML = temp.value;
 		        	var messages = document.getElementById('userMessage');
+		        	document.getElementById("messageForm").reset();
 		        	messages.appendChild(reply);
 		        }
 	        </script>
