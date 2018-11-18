@@ -22,18 +22,32 @@
 			<script>
 					isLoggedIn();
 			</script>
+			<header>
+				<nav class="edit">
+					<button class="edit" id="editprof" onclick="window.location.href='editprof.html'">Edit Entire Profile</button>	
+			</nav>
+			</header>
 			<main>
 
 				<div class="profile">
 					<img src="img_avatar.png" alt="Avatar">
 					<h1 class="name" id="userName">Mr. Potato Head</h1>
-					<h2 class="goal">Goal: Quit smoking</h2>
-					<h2 class="bio">Biography: I have been smoking for many years and am finally ready to quit to start striving for a healthier lifestyle.</h2>
-					<h2 class="interests">Interests: Piano, Pokemon, Anime</h2>
-
+					<h3>My goal for using this app:</h3>
+					<h2 class="goal" id="goals">Goal: Quit smoking</h2>
+					<h3>About me:</h3>
+					<h2 class="bio" id="Biography">Biography: I have been smoking for many years and am finally ready to quit to start striving for a healthier lifestyle.</h2>
+					<h3>My interests:</h3>
+					<h2 class="interests" id="interests">Interests: Piano, Pokemon, Anime</h2>
 					<script type="text/javascript">
 						var congrats = sessionStorage.getItem('username');
 						document.getElementById('userName').innerHTML = congrats;
+						var biography = sessionStorage.getItem('biography');
+						document.getElementById('Biography').innerHTML = biography;
+						var interests = sessionStorage.getItem('interests');
+						document.getElementById('interests').innerHTML = interests;
+						var goals = sessionStorage.getItem('goals');
+						document.getElementById('goals').innerHTML = goals;
+
 					</script>
 				</div>
 				
