@@ -36,6 +36,12 @@ function checkinData() {
     sessionStorage.setItem('hours', arrTemp.pop().value);
     sessionStorage.setItem('xSmoked', arrTemp.pop().value);
     sessionStorage.setItem('count', 1);
+
+    //store last-smoked as a date
+    var date = new Date();
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()-sessionStorage.getItem('hours'),
+         date.getMinutes()-sessionStorage.getItem('minutes'), date.getSeconds(), date.getMilliseconds());
+    sessionStorage.setItem('last-smoked', date);
 }
 
 
@@ -47,7 +53,7 @@ function checkinChange(caseNum) {
     var checkin_form = document.getElementById('checkin-responses');
     var button1 = document.getElementById('button-one');
     var button2 = document.getElementById('button-two');
-    
+
     switch (caseNum) {
         //Happens after user clicks "Yes" to answer "Did you smoke today?" (first question)
         case 1:
@@ -76,7 +82,7 @@ function checkinChange(caseNum) {
             var br3 = document.createElement('br');
             var br4 = document.createElement('br');
             var br5 = document.createElement('br');
-            
+
             //question change
             var checkin_q = document.getElementById('checkin-q');
             checkin_q.innerHTML = "Roughly how long ago did you smoke?";
@@ -118,9 +124,9 @@ function checkinChange(caseNum) {
             //use temp array to globally store checkin data for session storage transfer
             arrTemp.push(document.getElementById('hours'));
             arrTemp.push(document.getElementById('minutes'));
-            
+
             //checks every millisecond whether required input has been entered
-            setInterval(function() { 
+            setInterval(function () {
                 if (hours.value.length < 1 || minutes.value.length < 1) {
                     button1.setAttribute('onclick', "alert('Please fill in both Hours and Minutes fields!')");
                 }
@@ -151,19 +157,19 @@ function checkinChange(caseNum) {
             checkin_form.parentNode.removeChild(checkin_form);
             var checkin_q = document.getElementById('checkin-q');
             checkin_q.innerHTML = "Thanks for Checking in!"
-            break;    
-        
+            break;
+
         //Default by convention, details what happens after user selects "Yes" (First question)
         default:
             //create variables necessary for first change
-            var ans =  document.createElement('input');
+            var ans = document.createElement('input');
             var br = document.createElement('br');
             var br2 = document.createElement('br');
 
             //question change
             var checkin_q = document.getElementById('checkin-q');
             checkin_q.innerHTML = "How many times did you smoke?";
-            
+
             //set input elem attributes and insert into checkin form
             ans.setAttribute('type', 'number');
             ans.setAttribute('min', '1');
@@ -175,7 +181,7 @@ function checkinChange(caseNum) {
             checkin_form.insertBefore(br, button1);
             checkin_form.insertBefore(br2, br);
             checkin_form.insertBefore(ans, br2);
-            
+
             //use temp array to global store in order to transfer to session storage
             arrTemp.push(document.getElementById('xSmoked'));
 
@@ -187,14 +193,14 @@ function checkinChange(caseNum) {
             button2.setAttribute('type', 'button');
 
             //checks every millisecond whether required input has been entered
-            setInterval(function() { 
+            setInterval(function () {
                 if (ans.value.length < 1) {
                     button1.setAttribute('onclick', "alert('Please enter the number of times you smoked today!')");
                 }
                 else {
                     button1.setAttribute('onclick', 'checkinChange(1)');
                 }
-                
+
             }, 1);
             break;
     }
@@ -214,37 +220,21 @@ function isLoggedIn() {
     }
 }
 
-/**
- * Starts count up on home screen after a user has checked in on the health page
- **/
-function startTimer() {
-    var yr = new Date().getFullYear();
-    var month = new Date().getMonth();
-    var day = new Date().getDay();
-    var hour = sessionStorage.getItem('hours');
-    var minute = sessionStorage.getItem('minutes');
-    var curr_hr = new Date().getUTCHours();
-    var curr_mins = new Date().getUTCMinutes();
-    var curr_secs = new Date().getSeconds();
-    var curr_ms = new Date().getMilliseconds();
-    var last_smoked = new Date(yr, month, day, hour, minute, 0, 0);
-    sessionStorage.setItem('last_smoked', last_smoked);
-    var now = new Date(yr, month, day, curr_hr, curr_mins, curr_secs, curr_ms);
-    var distance = now - last_smoked;
-    
-    var x = setInterval(function() {
-        distance = now - last_smoked;
-        var days = Math.floor(distance/(1000*60*60*24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+function upTime() {
+    var now = new Date().getTime();
+    var last = new Date(sessionStorage.getItem('last-smoked'));
+    last = last.getTime();
+    var difference = now - last;
 
-        var timeElapsed = document.getElementById('time-tracking');
-        timeElapsed.innerHTML = days + " days, " + hours + " hrs, " + minutes + " mins, and " + seconds + " secs";
-    }, 1000);
-    
-    return x;
+    var days = Math.floor(difference/(60*60*1000*24));
+    var hours = Math.floor((difference%(60*60*1000*24))/(60*60*1000));
+    var mins = Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000));
+    var secs = Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
 
+    var timeElapsed = document.getElementById('time-tracking');
+    timeElapsed.innerHTML = days + " days, " + hours + " hrs, " + mins + " mins, and " + secs + " secs";
+    clearTimeout(upTime.to);
+    upTime.to = setTimeout(function() {upTime();}, 1000);
 }
 
 function display(time) {
@@ -275,7 +265,7 @@ function displayTime(time) {
 
 }
 
-function changeText(){
+function changeText() {
     count++;
     switch (count) {
         case 1:
@@ -287,10 +277,10 @@ function changeText(){
             checkin_q.innerHTML = checkin_qs[1];
             replaceYN(2);
             break;
-        
+
         default:
             break;
-        
+
     }
 }
 
