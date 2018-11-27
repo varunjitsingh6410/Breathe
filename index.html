@@ -28,17 +28,26 @@
 			<div class="page-content" id="welcome">
 				<h3 id="congrats">Congratulations! You haven't smoked in:</h3>
 				<section id="time-tracking">
-					__ days<br>
-					__ hours<br>
+					-- days<br>
+					-- hours<br>
 					&<br>
-					__ minutes<br>
+					-- minutes<br>
 				</section>
 				<script type="text/javascript">
+					
+
 					var congrats = sessionStorage.getItem('username');
 					document.getElementById('congrats').innerHTML = "Hi " + congrats + ", you haven't smoked for...";
-					var time = setInterval(function() {
-						startTimer();
-					}, 1000);
+					if (sessionStorage.getItem('last-smoked') != null) {
+						window.onload = function() {
+							upTime();
+						}
+					
+					}
+
+
+
+
 				</script>
 			</div>
 
