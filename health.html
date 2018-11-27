@@ -21,7 +21,7 @@
 		<script>
 			isLoggedIn();
 		</script>
-		<header>
+		<header id="checkin-header">
 			<h2 id="checkin-q">Did you smoke today?</h2>
 		</header>
 
@@ -40,6 +40,32 @@
 			</div>
 			<script>
 				var form = document.getElementById('checkin-responses');
+				if (sessionStorage.getItem('last-smoked') != null) {
+					var elem = document.createElement('section');
+					elem.setAttribute('id', 'timer');
+					var disp = document.getElementById('checkin-header');
+					disp.appendChild(elem);
+					disp.appendChild(document.createElement('br'));
+					function dispTime() {
+						var now = new Date().getTime();
+						var last = new Date(sessionStorage.getItem('last-smoked'));
+						last = last.getTime();
+						var difference = now - last;
+
+						var days = Math.floor(difference/(60*60*1000*24));
+						var hours = Math.floor((difference%(60*60*1000*24))/(60*60*1000));
+						var mins = Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000));
+						var secs = Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+
+						var timeElapsed = document.getElementById('timer');
+						timeElapsed.innerHTML = days + " days, " + hours + " hrs, " + mins + " mins, and " + secs + " secs";
+						clearTimeout(dispTime.to);
+						dispTime.to = setTimeout(function() {dispTime();}, 1000);
+					}
+					window.onload = function() {
+						dispTime();
+					}
+				}
 			</script>
 		</main><br><hr>
 

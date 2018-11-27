@@ -157,6 +157,10 @@ function checkinChange(caseNum) {
             checkin_form.parentNode.removeChild(checkin_form);
             var checkin_q = document.getElementById('checkin-q');
             checkin_q.innerHTML = "Thanks for Checking in!"
+            var timer = document.createElement('section');
+            timer.setAttribute('id', 'timer');
+            document.getElementById('checkin-header').appendChild(timer);
+            //upTime(document.getElementById('timer'));
             break;
 
         //Default by convention, details what happens after user selects "Yes" (First question)
@@ -233,9 +237,12 @@ function upTime() {
 
     var timeElapsed = document.getElementById('time-tracking');
     timeElapsed.innerHTML = days + " days, " + hours + " hrs, " + mins + " mins, and " + secs + " secs";
+    sessionStorage.setItem('timer', timeElapsed.innerHTML);
     clearTimeout(upTime.to);
     upTime.to = setTimeout(function() {upTime();}, 1000);
 }
+
+
 
 function display(time) {
 
