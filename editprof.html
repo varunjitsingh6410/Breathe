@@ -22,6 +22,11 @@
 		<script>
 			isLoggedIn();
 		</script>
+
+    <button class="navbar" id="profilebutton" onclick="window.location.href='profile.html'">Back</button>
+
+    <br>
+
   			Username: 
   			<p>
   				<input type="text" id="fname"><br>
@@ -61,8 +66,18 @@
 
 					}
 			</script>
-		<footer>
-			<button class="navbar" id="update" onclick="window.location.href='profile.html'">Back To Profile</button>
-		</footer>
+		<hr>
+
+    <footer>
+      <nav class="navbar">
+        <ul class="navbar" id="nav">
+          <li><button class="navbar" id="homebutton" onclick="window.location.href='index.html'">Home</button></li>
+          <li><button class="navbar" id="profilebutton" onclick="window.location.href='profile.html'">Profile</button></li>
+          <li><button class="navbar" id="chatbutton" onclick="window.location.href='chats.html'">Chat</button></li>
+          <li><button class="navbar" id="healthbutton" onclick="window.location.href='health.html'">Check-In</button></li>
+          <li><button class="navbar" id="homebutton" onclick="sessionStorage.clear();location.reload()">Logout</button></li>
+        </ul>
+      </nav>
+    </footer>
 	</body>
 </html>
