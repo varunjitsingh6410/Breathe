@@ -23,9 +23,6 @@
 					isLoggedIn();
 			</script>
 			<header>
-				<nav class="edit">
-					<button class="edit" id="editprof" onclick="window.location.href='editprof.html'">Edit Entire Profile</button>	
-			</nav>
 			</header>
 			<main>
 
@@ -38,6 +35,11 @@
 					<h2 class="bio" id="Biography">Biography: I have been smoking for many years and am finally ready to quit to start striving for a healthier lifestyle.</h2>
 					<h3>My interests:</h3>
 					<h2 class="interests" id="interests">Interests: Piano, Pokemon, Anime</h2>
+
+				<div class="edit">
+					<button id="editprof" onclick="window.location.href='editprof.html'">Edit Profile</button>	
+				</div>
+
 					<script type="text/javascript">
 						var congrats = sessionStorage.getItem('username');
 						document.getElementById('userName').innerHTML = congrats;
@@ -47,7 +49,6 @@
 						document.getElementById('interests').innerHTML = interests;
 						var goals = sessionStorage.getItem('goals');
 						document.getElementById('goals').innerHTML = goals;
-
 					</script>
 				</div>
 				
