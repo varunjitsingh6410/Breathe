@@ -29,3 +29,11 @@ img {
 .class {
 	text-align: center;
 }
+
+#editprof {
+    width: 100px;
+    height: 60px;
+    background-color: rgba(255, 99, 71, 0.5);
+    font-size: 20px;
+    font-style: bold;
+}
